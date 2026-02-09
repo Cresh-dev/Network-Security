@@ -4,8 +4,6 @@ Questa repository contiene i file sorgente dei miei appunti universitari riguard
 
 🌐 **Leggi gli appunti formattati qui:** 👉 [https://Cresh-dev.github.io/Network-Security/](https://Cresh-dev.github.io/Network-Security/)
 
----
-
 ## Contenuti
 
 ### 🔐 Infrastruttura a Chiave Pubblica (PKI)
