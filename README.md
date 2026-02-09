@@ -1,17 +1,30 @@
-# Quartz v4
+# Sicurezza di Rete (Appunti)
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Questa repository contiene i file sorgente dei miei appunti universitari riguardanti le architetture e i protocolli per la protezione delle infrastrutture ICT.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+🌐 **Leggi gli appunti formattati qui:** 👉 [https://Cresh-dev.github.io/Network-Security/](https://Cresh-dev.github.io/Network-Security/)
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+---
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+## Contenuti
 
-## Sponsors
+### 🔐 Infrastruttura a Chiave Pubblica (PKI)
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+- **Concetti Base:** Gestione del ciclo di vita dei certificati digitali tramite hardware, software e procedure dedicate.
+- **Componenti:** Ruoli della **Certificate Authority (CA)** come ente fidato, della **Registration Authority (RA)** per la verifica delle identità e del **Repository** per la memorizzazione di certificati e CRL.
+- **Standard X.509:** Utilizzo dei certificati per garantire l'autenticazione tramite crittografia a chiave pubblica.
+- **Policy:** Differenza tra **Certificate Policy (CP)** e **Certificate Practice Statement (CPS)** per le linee guida operative.
+
+### 🛡️ Sicurezza Perimetrale
+
+- **Firewalling:** Sistemi di protezione per il controllo degli accessi tra reti con diversi livelli di fiducia.
+- **Architetture DMZ:** Configurazione di zone demilitarizzate per esporre servizi pubblici (Web, Mail) in sicurezza.
+- **Modelli Implementativi:** Analisi delle soluzioni **Three-Legged Firewall** (economica) e **Two Single-Homed Firewalls** (massima sicurezza tramite isolamento fisico).
+- **Tipologie di Filtro:** Analisi dei filtri a livello Network (Packet Filtering), Transport (Stateful Inspection) e Application (Gateway).
+
+### 🤝 Framework AAA e Sicurezza E2E
+
+- **Modello AAA:** Implementazione di **Authentication**, **Authorization** e **Accounting** per il controllo granulare degli accessi.
+- **Protocolli di Sicurezza:** Approfondimento su standard come Radius, Kerberos, TLS e IPsec.
+- **Canali Sicuri:** Tecniche per garantire riservatezza e integrità dei dati end-to-end.
+- **Gestione delle Chiavi:** Gerarchia e distribuzione delle chiavi di sessione e chiavi master.
