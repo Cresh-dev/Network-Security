@@ -21,7 +21,7 @@ Il risultato è un valore di **lunghezza fissa** (il MAC), che viene **inviato i
 - Se i due MAC coincidono, il messaggio è autentico e integro.
 - Se sono diversi, il messaggio è stato alterato o proviene da una fonte non autorizzata.
 
-![[ns01 baseline security tools 2.png]]
+![[Screenshot 2026-02-09 at 15.25.01.png]]
 
 ==Il MAC può anche essere integrato con crittosistemi che garantiscono la confidenzialità del messaggio. Nel MAC grazie al testo cifrato non abbiamo la possibilità di implementare l'attacco a compleanno come nell'hash, però dobbiamo tenere in considerazione che l'hash è estremamente più veloce rispetto al MAC.==
 
