@@ -127,7 +127,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 - **Delegation:** Permette l'inoltro delle credenziali (forwarding), consentendo a un client di far agire un altro host per suo conto.
 - **Efficienza:** Elimina la doppia cifratura (presente nella V4) e introduce la negoziazione di chiavi di sotto-sessione per prevenire replay attack in connessioni successive.
 
-|**Caratteristica**|**Kerberos v4**|**Kerberos v5 (Il tuo schema)**|
+|**Caratteristica**|**Kerberos v4**|**Kerberos v5**|
 |---|---|---|
 |**Crittografia**|Solo DES (Insicuro oggi)|Flessibile (AES, 3DES, RC4, ecc.)|
 |**Durata Ticket**|Max ~21 ore (fisso)|Flessibile (Definita da Start/End time)|
