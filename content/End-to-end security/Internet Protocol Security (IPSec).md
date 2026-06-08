@@ -30,7 +30,7 @@ Ogni **Security Association (SA)** è identificata univocamente da tre elementi:
 - **Protocollo di sicurezza** (AH o ESP).
 - **SPI (Security Parameters Index):** Un identificativo a 32 bit che permette al destinatario di selezionare l'esatta SA per elaborare correttamente il pacchetto ricevuto.
 
-# Modalità operative di IPsec
+## Modalità operative di IPsec
 
 IPsec può funzionare in due modi:
 
@@ -43,7 +43,7 @@ IPsec può funzionare in due modi:
 	- Indirizzi originali _nascosti_ e protetti.
 	- Usata nelle **VPN site-to-site** o **client-to-site**.
 
-# Componenti principali di IPsec
+## Componenti principali di IPsec
 
 IPsec usa tre blocchi principali:
 
@@ -65,7 +65,7 @@ Versioni:
 - **IKEv1** (vecchio)
 - **IKEv2** (attuale, più sicuro e semplice)
 
-# AH
+## AH
 
 **AH (Authentication Header)** è il protocollo IPsec che fornisce **autenticazione, integrità e protezione antireplay**, ma **non cifra** il contenuto dei pacchetti. Garantisce che il pacchetto non sia stato modificato durante il tragitto. Usa **numeri di sequenza** e una finestra scorrevole per prevenire ritrasmissioni malevole.
 
@@ -83,7 +83,7 @@ Questo protocollo garantisce l'integrità dei dati tramite il **campo ICV** (Int
 > - **Il risultato (ICV):** Il risultato è un numero fisso chiamato **ICV (Integrity Check Value)**, che viene scritto dentro l'header AH.
 > - **La verifica:** Quando il destinatario riceve il pacchetto, rifà lo stesso calcolo. Se il suo risultato è identico a quello scritto nell'header AH, significa che **nessun bit** del pacchetto è stato cambiato durante il viaggio. Se anche solo un bit del mittente fosse stato alterato, il calcolo non tornerebbe.
 
-## Come funziona la sliding window
+### Come funziona la sliding window
 
 Immaginiamo una finestra numerata, ad esempio di **64 slot** (valore tipico ma configurabile). Questa finestra rappresenta un intervallo di numeri di sequenza **accettabili** in un dato momento. Il sistema controlla:
 
@@ -95,12 +95,12 @@ Immaginiamo una finestra numerata, ad esempio di **64 slot** (valore tipico ma c
 > [!NOTE] Resistenza all'attacco di replay
 > Ogni pacchetto inviato riceve un numero progressivo (1, 2, 3...). Il destinatario tiene traccia dei numeri già ricevuti tramite una "finestra scorrevole" nel **SAD**. Se l'attaccante rimanda il pacchetto n. 1 quando il destinatario è già arrivato al n. 50, il pacchetto viene **scartato immediatamente** perché considerato un duplicato (replay).
 
-# ESP – Encapsulating Security Payload
+## ESP – Encapsulating Security Payload
 
 **ESP (Encapsulating Security Payload)** è il componente più utilizzato di IPsec.  
 Fornisce **confidenzialità**, **integrità**, **autenticazione opzionale** e **protezione antireplay**.
 
-## Funzioni principali
+### Funzioni principali
 
 - **Crittografia per nascondere i dati, tramite algoritmi come**:
 	- AES-CBC
@@ -117,11 +117,11 @@ Fornisce **confidenzialità**, **integrità**, **autenticazione opzionale** e **
 > - **Incapsulamento:** Questo blocco cifrato viene messo "in mezzo" tra un nuovo **ESP Header** (che serve a gestire la connessione) e un **ESP Trailer** (che serve a dare la giusta lunghezza ai dati).
 > - **Autenticazione:** Infine, ESP aggiunge in coda un campo di autenticazione (simile ad AH) per assicurarsi che nessuno abbia manomesso il "lucchetto".
 
-# AH + ESP
+## AH + ESP
 
 Per ottenere simultaneamente la confidenzialità (tipica di ESP) e la protezione dell'intero header IP (tipica di AH), è necessario concatenare più SA in una sequenza definita "iterated layering". Utilizzando la **Transport Adjacency**, si applica AH sopra ESP in modalità trasporto, estendendo l'autenticazione all'intestazione IP originale per prevenire attacchi di spoofing. Nel **Transport-tunnel bundle**, invece, si inserisce un'autenticazione end-to-end (AH in modalità trasporto) all'interno di un tunnel cifrato (ESP in modalità tunnel) stabilito tra gateway, garantendo così sia la sicurezza della tratta intermedia che l'autenticità della sorgente originale.
 
-# IKE
+## IKE
 
 **IKE (Internet Key Exchange)** è il protocollo che "gestisce" la sicurezza in IPsec.
 
@@ -134,7 +134,7 @@ Serve per:
 
 IKE è un **protocollo a due fasi**. Il suo obiettivo finale non è trasportare i dati (quello lo fanno ESP/AH), ma costruire un canale sicuro affinché i router possano mettersi d'accordo sulle chiavi senza che nessuno li ascolti.
 
-## Le fasi del protocollo IKE
+### Le fasi del protocollo IKE
 
 **Fase 1 in modalità principale**: Creare il canale di gestione. In questa fase, i due dispositivi (es. due firewall) non si fidano ancora l'uno dell'altro.
 
@@ -158,6 +158,6 @@ IKE è un **protocollo a due fasi**. Il suo obiettivo finale non è trasportare 
 
 ![[Screenshot 2026-02-07 at 10.50.28.png]]
 
-# NAT e IPSec
+## NAT e IPSec
 
 Con un NAT nella rete, IPsec non può funzionare direttamente, il problema nasce dal fatto che il NAT modifica gli indirizzi IP dei pacchetti, mentre IPsec nasce per proteggerli: il protocollo AH vede la modifica come una manomissione e si blocca, mentre ESP fatica a gestire il ricalcolo dei checksum. La soluzione è il **NAT-Traversal (NAT-T)**, che risolve il conflitto incapsulando i dati IPsec dentro pacchetti **UDP sulla porta 4500**. Durante la fase di negoziazione (IKE), i due dispositivi si scambiano degli hash per rilevare se ci sia un NAT nel percorso; se lo trovano, iniziano a "impacchettare" tutto il traffico dentro UDP, permettendo così al router NAT di modificare le porte e gli IP senza corrompere la sicurezza della VPN.

@@ -2,10 +2,10 @@
 
 ![[Screenshot 2025-11-07 at 18.05.16.png]]
 
-# Fasi della firma digitale
+## Fasi della firma digitale
 
 Possiamo dividere il processo della firma digitale in due macro-fasi: la **generazione** (chi firma) e la **verifica** (chi riceve).
-## Fase di Firma
+### Fase di Firma
 
 Il firmatario utilizza un sistema di chiavi crittografiche: una **chiave privata** (segreta, nota solo al firmatario) e una **chiave pubblica** (disponibile a tutti) correlate tra loro.
 
@@ -14,7 +14,7 @@ Il firmatario utilizza un sistema di chiavi crittografiche: una **chiave privata
 3. **Creazione della Firma:** L'hash cifrato con la chiave privata è la **firma digitale**.
 4. **Associazione:** La firma digitale (l'hash cifrato) e il **certificato digitale** del firmatario (che contiene la chiave pubblica) vengono **associati** in modo indissolubile al documento originale.
 
-## Fase di Verifica
+### Fase di Verifica
 
 Il destinatario del documento utilizza la chiave pubblica del firmatario per assicurarsi che il documento sia originale e non sia stato alterato.
 

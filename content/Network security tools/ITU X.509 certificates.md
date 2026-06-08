@@ -5,11 +5,11 @@
 > [!NOTE] Resistenza all'attacco Man-in-the-Middle
 >  Qualora si trasmettesse unicamente una stringa di testo dichiarando che essa rappresenta la propria chiave pubblica, il destinatario non avrebbe alcun mezzo per verificare l’autenticità del mittente. Di conseguenza, non sarebbe possibile stabilire se la comunicazione provenga effettivamente dal soggetto legittimo oppure da un attaccante che tenta di intercettare e alterare le comunicazioni, come avviene in un attacco di tipo _Man-in-the-Middle_.
 
-# Struttura del certificato 
+## Struttura del certificato 
 
 ![[ns01 baseline security tools 1.png]]
 
-# Come ottenere un certificato
+## Come ottenere un certificato
 
 |**Passaggio**|**Azione del Richiedente (Es. Server)**|**Azione dell'Autorità di Certificazione (CA)**|**Risultato**|
 |---|---|---|---|
@@ -18,6 +18,6 @@
 |**3. Verifica e Firma**|Attende.|**Verifica** l'identità del richiedente e, se l'identità è confermata, **firma** il CSR usando la sua chiave privata.|Certificato X.509 firmato.|
 |**4. Installazione**|Riceve il certificato firmato e lo **installa** sul server, accoppiandolo con la sua chiave privata segreta.|Nessuna.|Il server può ora stabilire connessioni sicure (es. HTTPS).|
 
-# Gerarchia dei certificati
+## Gerarchia dei certificati
 
 La gerarchia X.509 permette a due utenti in parti diverse del mondo di fidarsi l'uno dell'altro, a patto che esista un **percorso ininterrotto di fiducia** che colleghi le rispettive Autorità di Certificazione, risalendo fino a un punto comune e fidato (la radice o un'altra CA comune).

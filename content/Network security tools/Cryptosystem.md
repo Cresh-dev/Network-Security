@@ -10,11 +10,11 @@ Nei Cryptosystem se $k_1$ è diversa da $k_2$ parliamo di crittografia asimmetri
 - Trasposizione;
 - Prodotto.
 
-# Sicurezza crittografica
+## Sicurezza crittografica
 
 Un obiettivo al quale vogliamo aspirare è ottenere la segretezza perfetta che non permette al nodo malevolo di poter leggere il messaggio (m).
 
-## Perfect secrecy
+### Perfect secrecy
 
 ==Secondo il teorema di Shannon la segretezza perfetta può essere ottenuta assicurandosi che il messaggio in chiaro (m) e il messaggio cifrato (c) siano completamente non correlati. Un algoritmo che assicura questa perfetta segretezza è chiamato OTP (one time pad)==, ed è implementato dal seguente schema:
 
@@ -25,43 +25,43 @@ Un obiettivo al quale vogliamo aspirare è ottenere la segretezza perfetta che n
 > - Non è possibile generare numeri realmente casuali;
 > - Non avendo un canale sicuro la chiave in quale modo può essere comunicata alla destinazione ?
 
-## Sicurezza pratica
+### Sicurezza pratica
 
 Come detto in precedenza, nella pratica non si può raggiungere la segretezza perfetta, per cui abbiamo:
 - **Sicurezza incondizionata**: il testo cifrato non fornisce informazioni a sufficienza per calcolare il corrispondente messaggio in chiaro, in maniera tale che il cipher non può essere rotto.
 - **Sicurezza computazionale**: il costo per rompere il cipher supera il valore dell'informazione e il tempo richiesto per rompere il cipher supera il tempo di vita dell'informazione.
 
-# Cryptoanalysis
+## Cryptoanalysis
 
 ==La cryptoanalysis è il processo che ha come obiettivo di scoprire il testo in chiaro o la chiave di un cryptosystem. ==
 
-## Approcci
+### Approcci
 
 Questa analisi si può fare tramite due approcci:
 - **Cryptanalytic attack**: è un attacco che sfrutta la struttura interna e le proprietà matematiche. 
 - **Brute-force attacks**: è un attacco che ignora la struttura dell'algoritmo e si basa unicamente sulla prova sistematica di ogni chiave possibile fino a trovare quella corretta.
 
-## Contrasto alla cryptoanalysis
+### Contrasto alla cryptoanalysis
 
 Per contrastare questi approcci di cryptoanalysis dobbiamo:
 - Utilizzare chiavi più lunghe;
 - Selezionare un cryptosystem robusto;
 - Garantire l'effetto valanga (Quando un input varia leggermente, l'output deve variare in maniera significativa).
 
-# Crittografia Simmetrica
+## Crittografia Simmetrica
 
 La crittografia simmetrica si basa sull'utilizzo di **un'unica chiave segreta** per entrambe le operazioni di crittografia e decrittografia. La chiave e l'algoritmo devono essere **condivisi** tra il mittente e il destinatario. Questo approccio si basa sulla "condivisione del segreto" (_Sharing secrecy_). È considerato quasi impossibile decifrare un messaggio se sono noti solo l'algoritmo e il testo cifrato. Questo tipo di crittografia è **molto veloce** rispetto alla crittografia asimmetrica.
 
 > [!Svantaggio della crittografia simmetrica]
 > Il principale svantaggio della crittografia simmetrica è il **problema dello scambio della chiave** (_Key exchange problem_). Per poter comunicare in modo sicuro, le due parti devono distribuire la chiave segreta in modo che non sia intercettata da nodi malevoli.
 
-## Classificazione in Base all'Elaborazione del Testo in Chiaro
+### Classificazione in Base all'Elaborazione del Testo in Chiaro
 
 La crittografia simmetrica può essere suddivisa in base al modo in cui elabora il testo in chiaro:
 - **Cifratura a Blocchi (Block Cipher)**;
 - **Cifratura a Flusso (Stream Cipher)**.
 
-### Cifratura a Blocchi
+#### Cifratura a Blocchi
 
 I cifrari a blocchi possono essere utilizzati in diverse modalità operative, ognuna con caratteristiche specifiche in termini di velocità, resilienza alla crittoanalisi e propagazione degli errori.
 
@@ -72,7 +72,7 @@ I cifrari a blocchi possono essere utilizzati in diverse modalità operative, og
 | **Cipher FeedBack (CFB)**                 | Fa apparire il cifrario a blocchi come un cifrario a flusso. Buona resilienza alla crittanalisi e auto-sincronizzazione rapida.                                                                              | Non è veloce. È più complesso.                                                                                                                                                 |
 | **Output FeedBack (OFB) & Counter (CTR)** | Sono molto veloci, con possibilità di **parallelizzare il processo**. Fanno apparire il cifrario a blocchi come un cifrario a flusso. Propagazione degli errori molto limitata.                              | Non sono semplici. I problemi di sincronizzazione sono demandati ai livelli superiori (_high-level protocols_).                                                                |
 
-# Crittografia a chiave pubblica (asimmetrica)
+## Crittografia a chiave pubblica (asimmetrica)
 
 ==A differenza della crittografia simmetrica (dove si usa la stessa chiave per cifrare e decifrare), la crittografia asimmetrica utilizza lo stesso algoritmo sia per cifrare che per decifrare, ma impiega due chiavi distinte==. Mittente e destinatario devono possedere ognuno una coppia di chiavi che si accoppiano con quelle dell'altro
 
@@ -80,7 +80,7 @@ Le due chiavi sono:
 - **Chiave pubblica**: può essere conosciuta da tutti e può essere usata per criptare messaggi e verificare la firma;
 - **Chiave privata**: deve essere conosciuta solo dal proprietario, ed è usata per decifrare il messaggio e per firmarlo.
 
-## Usi e Applicazioni
+### Usi e Applicazioni
 
 Questa tipologia di crittografia è utilizzata per:
 - **Distribuzione delle chiavi**: Assicura comunicazioni sicure con una chiave personale senza la necessità di un centro di distribuzione delle chiavi (KDC) o di dover fidarsi del comportamento altrui.
@@ -94,7 +94,7 @@ Con un mix di queste tecniche possiamo offrire **l'integrità dei dati**.
 
 ![[Screenshot 2026-02-05 at 17.53.52.png]]
 
-## Diffie-Hellman
+### Diffie-Hellman
 
 L'algoritmo Diffie-Hellman che è un protocollo crittografico che permette a due parti di generare una chiave segreta condivisa su un canale di comunicazione pubblico, senza che un attaccante possa ricavarne il segreto.
 
@@ -121,11 +121,11 @@ Entrambi ottengono **la stessa chiave `K`**, che ora possono usare per cifrare i
 
 ![[Screenshot 2026-02-05 at 17.59.21.png]]
 
-## RSA
+### RSA
 
 La sicurezza di RSA si basa sulla difficoltà di invertire certe funzioni matematiche. Perché questo principio regga, i numeri utilizzati devono essere enormemente grandi. Se vogliamo evitare che qualcuno rompa il codice provando tutte le combinazioni (Brute Force), dobbiamo usare chiavi superiori a **2048 bit**. 
 
-### Chosen Ciphertext Attack
+#### Chosen Ciphertext Attack
 
 - C'è un attaccante, **Trudy**, che ha intercettato un messaggio cifrato ($c$) e vuole leggerlo, ma non ha la chiave privata.
 - Trudy usa un trucco: "maschera" il messaggio moltiplicandolo per un numero casuale. Ora il messaggio sembra solo una stringa di dati senza senso ($y$).
@@ -137,7 +137,7 @@ La sicurezza di RSA si basa sulla difficoltà di invertire certe funzioni matema
 > [!NOTE] Firmare solo l'hash (footprint)
 > Non dobbiamo **MAI** usare RSA per firmare un messaggio grezzo o sconosciuto, perché potrebbe nascondere una trappola. La soluzione è firmare sempre e solo l'**Hash** (l'impronta digitale) del messaggio. L'Hash rompe la struttura matematica che permette questo attacco, rendendolo impossibile.
 
-## ECC
+### ECC
 
 La crittografia basata sulle curve ellittiche (ECC) rappresenta un'evoluzione fondamentale rispetto ai sistemi tradizionali come RSA. Il principio cardine risiede nella geometria: anziché basarsi sulla difficoltà di scomporre numeri molto grandi in fattori primi, l'ECC utilizza le proprietà di specifiche curve matematiche. 
 

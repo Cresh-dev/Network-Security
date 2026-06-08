@@ -1,12 +1,12 @@
 Kerberos è un protocollo di autenticazione di rete progettato per permettere a client e server di provare la loro identità reciproca in modo sicuro su una rete non sicura. È la base di come funzionano i login in molti sistemi aziendali (come Windows Active Directory). L'idea fondamentale è: **non inviare mai la password attraverso la rete**. Invece, si usano dei "biglietti" (tickets) crittografati.
 
-# L'architettura di Kerberos
+## L'architettura di Kerberos
 
 - **Realm:** L'ambiente Kerberos costituito da utenti, server e KDC.
 - **Principals:** Gli utenti o servizi registrati, identificati nella forma `primary/instance@REALM` (es. `alessio/admin@POLIBA.IT`)
 - **KDC:** Il centro di distribuzione chiavi che include due funzioni logiche distinte: l'Authentication Server (AS) e il Ticket Granting Server (TGS)
 
-# Il Funzionamento del Protocollo (V4)
+## Il Funzionamento del Protocollo (V4)
 
 ![[Screenshot 2025-12-09 at 09.42.48.png]]
 
@@ -36,11 +36,11 @@ Kerberos è un protocollo di autenticazione di rete progettato per permettere a 
 > 
 > Questo pacchetto viene **criptato** con la _Chiave di Sessione_ (una chiave segreta che conoscono solo la workstation e il server, grazie al passaggio precedente).
 
-## Flusso dei messaggi
+### Flusso dei messaggi
 
 ![[Screenshot 2025-12-09 at 10.01.44.png]]
 
-### (a) Fase di Autenticazione (Ottenere il TGT)
+#### (a) Fase di Autenticazione (Ottenere il TGT)
 
 Qui è dove si fa il login.
 
@@ -51,7 +51,7 @@ Qui è dove si fa il login.
 > [!Note] Cifratura del ticket _tgs_
 >  Il $Ticket_{tgs}$ è cifrato con la chiave del TGS ($K_{tgs}$). Il Client non può leggerlo, lo conserva e basta. L'AS dà una "chiave per il prossimo passaggio" e una "busta chiusa" (il Ticket) che solo il TGS può aprire.
 
-### (b) Fase TGS (Ottenere il Ticket per il Servizio)
+#### (b) Fase TGS (Ottenere il Ticket per il Servizio)
 
 Qui usi il TGT per chiedere l'accesso a un servizio specifico (chiamato $V$).
 
@@ -63,7 +63,7 @@ Qui usi il TGT per chiedere l'accesso a un servizio specifico (chiamato $V$).
     - Una nuova chiave di sessione specifica per quel servizio ($K_{c,v}$).
     - Il **Ticket per il Servizio** ($Ticket_v$), cifrato con la chiave del server V ($K_v$).
 
-### (c) Fase Client/Server (Accedere al Servizio)
+#### (c) Fase Client/Server (Accedere al Servizio)
 
 Finalmente la connessione alla risorsa (es. la stampante o il file server).
 
@@ -73,7 +73,7 @@ Finalmente la connessione alla risorsa (es. la stampante o il file server).
     - Prende il nostro orario ($TS_5$) dall'autenticatore, **aggiunge 1**, lo cifra e te lo rimanda.
     - Perché $TS_5 + 1$? Dimostra che il server è stato in grado di decifrare il nostro messaggio, leggere l'orario e modificarlo. Solo il vero server (che possiede la chiave $K_v$) poteva aprire il Ticket per ottenere la chiave di sessione necessaria per leggere il nostro orario.
 
-### Le 3 chiavi fisse
+#### Le 3 chiavi fisse
 
 **Chiave Utente ↔ Authentication Server (AS)**:
 
@@ -90,7 +90,7 @@ Finalmente la connessione alla risorsa (es. la stampante o il file server).
 - **Cos'è:** Una chiave condivisa tra il sistema Kerberos e il servizio finale (es. un database, un server di file o una stampante).
 - **A cosa serve:** Quando chiediamo di accedere a un servizio specifico, il TGS ci dà un "Ticket di Servizio" criptato con questa chiave. Solo il server di destinazione può aprirlo, confermando che il TGS ci ha effettivamente autorizzato.
 
-### Riassunto della "Matrioska"
+#### Riassunto della "Matrioska"
 
 Osserviamo che ci sono chiavi dentro chiavi:
 
@@ -100,7 +100,7 @@ Osserviamo che ci sono chiavi dentro chiavi:
 
 ![[Screenshot 2026-02-08 at 11.43.44.png]]
 
-## Kerberos v4 con multirealm
+### Kerberos v4 con multirealm
 
 In presenza di più realm Kerberos (scenario multi-realm) può sorgere una problematica specifica. Questa si manifesta quando un utente deve accedere a un server che appartiene a un realm differente dal proprio. Per gestire tale situazione, lo scenario viene realizzato estendendo i meccanismi già descritti, introducendo ulteriori interazioni tra i diversi realm, come illustrato di seguito.
 
@@ -110,7 +110,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 
 ![[Screenshot 2026-02-08 at 11.56.42.png]]
 
-# Struttura del protocollo V5
+## Struttura del protocollo V5
 
 **Limiti della Versione 4:**
 
@@ -127,7 +127,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 - **Delegation:** Permette l'inoltro delle credenziali (forwarding), consentendo a un client di far agire un altro host per suo conto.
 - **Efficienza:** Elimina la doppia cifratura (presente nella V4) e introduce la negoziazione di chiavi di sotto-sessione per prevenire replay attack in connessioni successive.
 
-|**Caratteristica**|**Kerberos v4**|**Kerberos v5**|
+|**Caratteristica**|**Kerberos v4**|**Kerberos v5 (Il tuo schema)**|
 |---|---|---|
 |**Crittografia**|Solo DES (Insicuro oggi)|Flessibile (AES, 3DES, RC4, ecc.)|
 |**Durata Ticket**|Max ~21 ore (fisso)|Flessibile (Definita da Start/End time)|
@@ -136,11 +136,11 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 |**Dipendenza Rete**|Fortemente legato a IP|Indipendente (usa ASN.1)|
 |**Sicurezza Password**|Vulnerabile ad attacchi dizionario|Supporta Pre-Authentication (per mitigare attacchi)|
 
-## Flusso dei messaggi
+### Flusso dei messaggi
 
 ![[Screenshot 2025-12-09 at 10.52.50.png]]
 
-### Fase (a): Autenticazione Iniziale (AS Exchange)
+#### Fase (a): Autenticazione Iniziale (AS Exchange)
 
 **Obiettivo:** L'utente fa il login e ottiene un "Passpartout" (chiamato TGT - Ticket Granting Ticket).
 
@@ -150,7 +150,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
     - Una **Chiave di Sessione ($K_{c,tgs}$)** cifrata con la password dell'utente ($K_c$). L'utente deve digitare la password corretta per decifrare questo pacchetto e ottenere la chiave.
     - Il **Ticket TGS ($Ticket_{tgs}$)**. Questo è il "Passpartout". È cifrato con la chiave segreta del TGS, quindi l'utente non può leggerlo né modificarlo, può solo conservarlo.
 
-### Fase (b): Richiesta del Servizio (TGS Exchange)
+#### Fase (b): Richiesta del Servizio (TGS Exchange)
 
 **Obiettivo:** Usare il "Passpartout" per ottenere il biglietto specifico per il servizio desiderato (es. il server file $V$).
 
@@ -162,7 +162,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
     - Un **Ticket per il Servizio V ($Ticket_v$)**, cifrato con la chiave del server V (così solo il server V può leggerlo).
     - Una nuova chiave di sessione ($K_{c,v}$) per parlare in modo sicuro con il server V.
 
-### Fase (c): Accesso al Servizio (Client/Server Exchange)
+#### Fase (c): Accesso al Servizio (Client/Server Exchange)
 
 **Obiettivo:** Accedere finalmente al server o alla risorsa.
 
@@ -172,6 +172,6 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 6. **$V \rightarrow C$:** Il Server $V$ decifra il ticket (usando la sua chiave segreta $K_v$), estrae la chiave di sessione e verifica l'Authenticator.
     - Se il messaggio (6) è presente (come nell'immagine), significa che c'è **Autenticazione Mutua**: il server risponde al client confermando l'orario ($TS_2$) per dire "Sì, sono veramente il server che cercavi e ho accettato il tuo ticket".
 
-# Kerberos con crittografia a chiave pubblica
+## Kerberos con crittografia a chiave pubblica
 
 Il punto di partenza è che il protocollo Kerberos classico ha un tallone d'Achille: la sua sicurezza dipende interamente dalla robustezza delle password scelte dagli utenti. Se la password è debole, tutto il sistema è vulnerabile. Per risolvere questo problema, è stata introdotta l'estensione **PKINIT**, che cambia radicalmente il modo in cui avviene il primo contatto tra l'utente e il server. Invece di digitare una password, l'utente dimostra la propria identità utilizzando la crittografia a chiave pubblica, spesso tramite certificati digitali (come quelli che si trovano sulle Smart Card). Questo toglie all'utente il peso di dover gestire password complesse e si integra meglio con i moderni sistemi di sicurezza aziendali. Il funzionamento pratico è una sorta di dialogo sicuro. Quando un client vuole accedere, invia al server centrale (il KDC) il suo certificato digitale firmato. Il server controlla che il certificato sia autentico e valido. Una volta accertata l'identità, il server deve consegnare al client una "chiave di sessione" per poter comunicare in futuro. Per proteggere questo passaggio delicato, il server cifra questa chiave usando la chiave pubblica dell'utente (o un metodo matematico chiamato Diffie-Hellman), in modo che solo l'utente vero, che possiede la corrispondente chiave privata, possa "aprire il pacchetto" e leggerla. Tutto questo processo complesso e matematicamente pesante serve solo per l'ingresso iniziale. Appena l'utente ha decifrato la chiave di sessione, il sistema mette da parte la crittografia a chiave pubblica (che è lenta) e torna a usare la crittografia simmetrica standard, che è molto più veloce e performante, per tutto il resto della sessione di lavoro.

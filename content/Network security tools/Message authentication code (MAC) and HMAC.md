@@ -5,7 +5,7 @@
 > [!NOTE] La confidenzialità con il MAC
 >  Il MAC, da solo, fornisce **autenticità** e **integrità**. La **riservatezza (confidentiality)** non è fornita dal MAC stesso, ma si ottiene aggiungendo un algoritmo di **cifratura** al sistema. Per combinare tutte e tre le proprietà (autenticità, integrità e riservatezza), le migliori pratiche di sicurezza (come lo schema **Encrypt-then-MAC** o E-t-M) prevedono che si usino **chiavi crittografiche distinte** (una chiave per il MAC e una chiave diversa per la cifratura) e che l'operazione di **cifratura** sia eseguita **prima** dell'operazione di MAC (cioè, il MAC viene calcolato sul testo _cifrato_), poiché questo ordine è generalmente considerato il più sicuro.
 
-# Come funziona un MAC?
+## Come funziona un MAC?
 
 Un MAC viene calcolato con una **funzione crittografica** che prende in input:
 
@@ -28,7 +28,7 @@ Il risultato è un valore di **lunghezza fissa** (il MAC), che viene **inviato i
 > [!NOTE] MAC non è firma digitale!
 > Il MAC è basato sulla crittografia simmetrica, invece la firma digitale si basa sulla crittografia asimmetrica.
 
-# HMAC
+## HMAC
 
 L'**HMAC** (Hash-based Message Authentication Code) è un meccanismo utilizzato per verificare contemporaneamente l'**integrità** e l'**autenticità** di un messaggio utilizzando una funzione di hash (come SHA-256) e una chiave segreta ($K$).
 

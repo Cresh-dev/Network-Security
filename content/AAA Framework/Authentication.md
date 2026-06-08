@@ -1,6 +1,6 @@
 L'autenticazione può essere **one-way** (solo un'entità prova la propria identità) o **mutual** (entrambe le entità si autenticano a vicenda). Il processo tipico prevede l'ottenimento di credenziali (password, certificati, biometria), la loro verifica rispetto a un riferimento memorizzato e la conferma dell'identità prima di procedere all'autorizzazione.
 
-# Fattori e Metodologie di Autenticazione
+## Fattori e Metodologie di Autenticazione
 
 Possiamo classificare i meccanismi di autenticazione in tre categorie principali, basate su ciò che l'individuo "sa", "possiede" o "è":
 
@@ -11,15 +11,15 @@ Possiamo classificare i meccanismi di autenticazione in tre categorie principali
 - **Ciò che sei:** Caratteristiche fisiche come impronte digitali o voce.
 	- _Limiti:_ Possibilità di falsi positivi/negativi e difficoltà nella revoca delle credenziali (non puoi cambiare la tua impronta digitale come una password).
 
-# Sicurezza nell'Autenticazione e Gestione delle Password
+## Sicurezza nell'Autenticazione e Gestione delle Password
 
 Questa analisi copre le tecniche per proteggere le credenziali degli utenti (mitigazione) e le vulnerabilità intrinseche dei protocolli di autenticazione "Challenge-Response".
 
-## Strategie di Mitigazione per le Password
+### Strategie di Mitigazione per le Password
 
 Per aumentare la sicurezza rispetto alla semplice memorizzazione delle password, si adottano tre livelli di mitigazione:
 
-### Prima Mitigazione: Hashing e Salting
+#### Prima Mitigazione: Hashing e Salting
 
 Non si deve **mai** memorizzare la password in chiaro, né il suo semplice hash. La pratica corretta prevede l'uso di un **Salt** (un numero casuale $S$).
 
@@ -27,14 +27,14 @@ Non si deve **mai** memorizzare la password in chiaro, né il suo semplice hash.
 - **Funzionamento:** Quando l'utente inserisce la password in chiaro, il server recupera il _Salt_ associato a quell'utente, ricalcola l'hash e lo confronta con quello memorizzato.
 - **Vantaggio:** Questo metodo rende il sistema molto più robusto contro gli **attacchi a dizionario** e le _rainbow tables_, poiché costringe l'attaccante a ricalcolare gli hash per ogni singolo _salt_.
 
-### Seconda Mitigazione: Complessità
+#### Seconda Mitigazione: Complessità
 
 Imporre l'utilizzo di una **password complessa** (lunghezza, caratteri speciali, ecc.) per rendere più difficile indovinarla tramite _brute-force_.
 
-### Terza Mitigazione: Autenticazione a Due Fattori (2FA)
+#### Terza Mitigazione: Autenticazione a Due Fattori (2FA)
 
 Implementare un secondo livello di verifica oltre alla password (es. un codice temporaneo o un token fisico).
-## Protocolli di Autenticazione
+### Protocolli di Autenticazione
 
 Esistono diversi protocolli standard per verificare l'identità di un utente, con diversi livelli di sicurezza:
 
@@ -45,7 +45,7 @@ Esistono diversi protocolli standard per verificare l'identità di un utente, co
     - _Livello:_ Medio (migliore di PAP, ma considerato "debole" rispetto a standard moderni avanzati).
     - _Funzionamento:_ La password **non** viene mai inviata. Si utilizza un meccanismo di _Challenge-Response_ (sfida-risposta).
 
-## Il Meccanismo Challenge-Response e le sue Vulnerabilità
+### Il Meccanismo Challenge-Response e le sue Vulnerabilità
 
 L'approccio più sicuro per l'autenticazione crittografica è il **Challenge-Response**.
 
@@ -53,13 +53,13 @@ L'approccio più sicuro per l'autenticazione crittografica è il **Challenge-Res
 
 Tuttavia, questo meccanismo è soggetto a diversi attacchi specifici se non implementato correttamente:
 
-### Attacco Replay (Ripetizione)
+#### Attacco Replay (Ripetizione)
 
 Un attaccante intercetta la "sfida" e la "risposta" corretta di un utente legittimo. In futuro, se il server ripropone la stessa sfida, l'attaccante può inviare la vecchia risposta registrata per autenticarsi senza conoscere la chiave.
 
 - **Soluzione:** Utilizzare **Timestamp**, **Nonce** (numeri usati una sola volta) o **Numeri di Sequenza** per garantire che ogni sfida sia unica e non riutilizzabile.
 
-### Attacco Chosen-Ciphertext (Testo cifrato scelto)
+#### Attacco Chosen-Ciphertext (Testo cifrato scelto)
 
 Il nodo malevolo invia un testo cifrato casuale alla vittima per analizzare come questa risponde o decifra il messaggio (crittoanalisi sulla risposta correlata).
 
@@ -67,7 +67,7 @@ Il nodo malevolo invia un testo cifrato casuale alla vittima per analizzare come
 
 - **Soluzione:** Evitare l'uso di numeri casuali aggiuntivi prevedibili o semplici; il protocollo deve essere strutturato in modo che il server invii un "testimone" (es. hash del numero casuale) per provare di essere l'effettivo generatore del messaggio cifrato.
 
-### Attacco Reflection (Riflessione)
+#### Attacco Reflection (Riflessione)
 
 L'attaccante apre sessioni parallele con il server. Quando il server invia una sfida all'attaccante, quest'ultimo (non conoscendo la chiave) invia la stessa sfida _indietro_ al server (o a un altro client legittimo) in una seconda sessione. Il server risolve la sfida per lui, e l'attaccante usa quella risposta per autenticarsi nella prima sessione.
 
@@ -76,7 +76,7 @@ L'attaccante apre sessioni parallele con il server. Quando il server invia una s
 - **Contesto:** Spesso accade quando il primo messaggio è in chiaro e si richiede una risposta cifrata.
 - **Soluzione:** Il server deve includere prove della propria identità (testimone) o usare chiavi diverse per le due direzioni di comunicazione.
 
-### Attacco Interleaving (Intreccio)
+#### Attacco Interleaving (Intreccio)
 
 Si tratta di un'evoluzione sofisticata dell'attacco _Reflection_. L'obiettivo dell'attaccante è dimostrare di essere autentico sfruttando un client legittimo (A) e un server (B).
 

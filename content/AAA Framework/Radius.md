@@ -1,6 +1,6 @@
 il protocollo **RADIUS** (Remote Authentication Dial-In User Service) emerge come lo standard _de facto_ per l'autenticazione remota e l'implementazione del framework **AAA** (Authentication, Authorization, Accounting). 
 
-# Architettura e Ruolo nel Framework AAA
+## Architettura e Ruolo nel Framework AAA
 
 RADIUS utilizza **UDP** come protocollo di trasporto. Questa scelta è dettata dalla necessità di gestire tempistiche diverse rispetto al TCP e dalla natura _stateless_ del protocollo (client e server possono apparire e scomparire rapidamente). RADIUS implementa il modello **Client-Server**, ma con una distinzione fondamentale rispetto all'interazione utente classica:
 
@@ -18,7 +18,7 @@ l protocollo supporta tutte e tre le funzioni del framework AAA:
 > [!NOTE] Utilizzo di crittografia simmetrica
 > Tutti i messaggi scambiati nel framework RADIUS sono [[Cryptosystem|crittografati]] con una chiave simmetrica.
 
-# Metodi di Autenticazione Supportati
+## Metodi di Autenticazione Supportati
 
 **PAP (Password Authentication Protocol):** È un metodo di autenticazione debole. La password è vulnerabile a intercettazioni e replay attack se non protetta da un canale sicuro sottostante. Il NAS riceve le credenziali dell'utente, ma non possedendo il database degli utenti, non sa se le credenziali sono corrette. Impacchetta le credenziali in un messaggio tramite una funzione [[Hash function|hash]] MD5 chiamata Access-Request che invia al Server. Il server fornisce in risposta il messaggio di accettazione o rifiuto.
 
@@ -34,7 +34,7 @@ l protocollo supporta tutte e tre le funzioni del framework AAA:
 
 ![[Screenshot 2026-02-07 at 17.07.26.png]]
 
-# Pacchetto RADIUS
+## Pacchetto RADIUS
 
 ![[Screenshot 2026-02-07 at 17.20.53.png]]
 
@@ -46,11 +46,11 @@ Il pacchetto ha un'intestazione (**header**) fissa di **20 byte**, seguita da un
 - **Autenticatore:** Un campo di 16 byte usato per la sicurezza (spiegato sotto).
 - **Attributi:** Contengono i dati specifici (utente, password, permessi) in formato **TLV** (Type-Length-Value).
 
-## Meccanismi di Sicurezza
+### Meccanismi di Sicurezza
 
 Il protocollo non invia mai le informazioni sensibili in chiaro, utilizzando un **Segreto Condiviso ($S$)** noto solo al client (NAS) e al server.
 
-### Protezione della Password
+#### Protezione della Password
 
 La password dell'utente ($P$) viene cifrata prima dell'invio tramite un'operazione di XOR ($\oplus$):
 
@@ -60,7 +60,7 @@ $$\text{User-Password} = P \oplus \text{MD5}(S + RA)$$
 - Viene creato un hash MD5 unendo il segreto e il numero casuale.
 - Il risultato viene combinato con la password. In questo modo, la password cambia "aspetto" a ogni sessione anche se l'utente usa sempre la stessa.
 
-### Autenticatore di Risposta
+#### Autenticatore di Risposta
 
 Per garantire che la risposta provenga davvero dal server autorizzato e non sia stata manomessa, il server calcola un codice di verifica:
 
@@ -68,21 +68,21 @@ $$\text{Auth}_{Resp} = \text{MD5}(\text{Codice}|\text{ID}|\text{Lunghezza}|RA|\t
 
 Questo valore concatena tutti i dati del pacchetto con il segreto condiviso, rendendo impossibile per un attaccante falsificare la risposta senza conoscere $S$.
 
-# RADIUS accounting procedure
+## RADIUS accounting procedure
 
 ![[Screenshot 2026-02-07 at 17.41.55.png]]
 
-## Fase di Login (Authentication & Authorization)
+### Fase di Login (Authentication & Authorization)
 
 1. **Access-Request**: L'utente prova a connettersi. Il NAS invia le credenziali (cifrate) al server.
 2. **Access-Accept**: Se le credenziali sono corrette, il server risponde positivamente inviando anche i parametri di configurazione (indirizzo IP, maschera di rete, tempo massimo di sessione).
-## Fase di Accounting (Il "Registro")
+### Fase di Accounting (Il "Registro")
 
 3. **Accounting-Request (Start)**: Appena l'utente inizia a navigare, il NAS comunica al server che la sessione è ufficialmente iniziata.
 4. **Accounting-Response**: Il server conferma di aver registrato l'inizio.
 5. **Accounting-Request (Stop)**: Quando l'utente si disconnette, il NAS invia un messaggio di "Stop" contenente i dati finali (es. durata totale, byte trasmessi).
 6. **Accounting-Response**: Il server conferma la ricezione e chiude il log.
-# Scalabilità e Roaming (Proxy RADIUS)
+## Scalabilità e Roaming (Proxy RADIUS)
 
 Un tema rilevante trattato è l'uso di RADIUS in scenari distribuiti complessi tramite il meccanismo di **Proxy**. Invece di avere ogni rete locale che autentica direttamente gli utenti, si utilizza un **server remoto centrale** (Home Network) che detiene le credenziali reali. Questo permette a un utente (nell'esempio "Alice") di accedere a una rete esterna ("Foreign Network") usando le proprie credenziali di casa.
 

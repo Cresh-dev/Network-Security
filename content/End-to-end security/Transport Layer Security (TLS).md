@@ -9,7 +9,7 @@ SSL e TLS sono dei protocolli [[Cryptosystem|crittografici]] che forniscono l'au
 
 ![[Screenshot 2025-11-11 at 14.14.36.png]]
 
-# TLS 1.2 Handshake protocol
+## TLS 1.2 Handshake protocol
 
 ![[Screenshot 2026-02-06 at 17.27.55.png]]
 
@@ -38,7 +38,7 @@ SSL e TLS sono dei protocolli [[Cryptosystem|crittografici]] che forniscono l'au
         - L'intero handshake è avvenuto **senza manomissioni** (tampering) da parte di un attaccante.
     - A questo punto, l'handshake è completo, e la connessione è considerata **sicura**. Tutte le comunicazioni successive saranno crittografate con le nuove chiavi simmetriche.
 
-## Stabilire il pre-master secret
+### Stabilire il pre-master secret
 
 Queste procedure servono a far sì che client e server condividano un primo valore segreto (il pre-master secret) in modo sicuro. Una volta ottenuto il pre-master secret tramite uno di questi metodi, sia il client che il server lo useranno (insieme ai numeri casuali scambiati all'inizio) per calcolare autonomamente il **master secret**.
 
@@ -47,7 +47,7 @@ Queste procedure servono a far sì che client e server condividano un primo valo
 - **Ephemeral Diffie-Hellman (DHE)**: Le chiavi sono temporanee e valide per una sola sessione. Per sicurezza, vengono firmate con la chiave RSA del mittente così da garantirne l'autenticità.
 - **RSA**: Il client genera il segreto, lo cripta con la chiave pubblica del server (presa dal certificato) e glielo spedisce direttamente.
 
-## Generazioni delle chiavi
+### Generazioni delle chiavi
 
 Il processo di generazione delle chiavi in TLS avviene in tre fasi sequenziali:
 
@@ -62,13 +62,13 @@ Lo schema **P_hash** visibile nell'immagine rappresenta proprio il funzionamento
 
 ![[Screenshot 2026-02-06 at 17.54.34.png]]
 
-# TLS record protocol
+## TLS record protocol
 
 ==Il TLS Record Protocol è uno dei componenti fondamentali del protocollo TLS (Transport Layer Security). Si occupa di incapsulare, proteggere e trasportare i dati applicativi in modo sicuro tra client e server.==
 
 ![[Screenshot 2026-02-06 at 18.03.03.png]]
 
-## Operazioni del record protocol 
+### Operazioni del record protocol 
 
 È lo strato più basso di TLS, responsabile di:
 
@@ -78,11 +78,11 @@ Lo schema **P_hash** visibile nell'immagine rappresenta proprio il funzionamento
 4. **Trasmetterli** in rete in modo sicuro.
 5. **Verificarli, decifrarli e ricomporli** sul lato ricevente
 
-# TLS alert protocol
+## TLS alert protocol
 
 ==Il TLS Alert Protocol è uno dei protocolli logici che compongono TLS insieme al Record Protocol e all’Handshake Protocol. Serve a segnalare condizioni di errore o cambi di stato durante una connessione TLS==. È un protocollo molto piccolo ma fondamentale perché permette alle due parti (client e server) di comunicare in modo standard cosa sta succedendo quando qualcosa non va o quando si vuole chiudere la connessione in modo corretto.
 
-# TLS 1.3
+## TLS 1.3
 
 Le innovazioni introdotte in **TLS 1.3** rappresentano un significativo passo avanti rispetto al suo predecessore, TLS 1.2, specialmente in termini di **sicurezza** e **efficienza**. ==TLS 1.3 è più sicuro di TLS 1.2 grazie all'adozione di suite di cifratura più robuste e sicure e all'eliminazione di funzionalità insicure. Un'innovazione fondamentale è l'introduzione obbligatoria della perfetta segretezza in avanti (Perfect Forward Secrecy, PFS)==:
 
