@@ -1,3 +1,7 @@
+---
+title: Kerberos
+description: Kerberos è un protocollo di autenticazione di rete progettato per permettere a client e server di provare la loro identità reciproca in modo sicuro su una rete…
+---
 Kerberos è un protocollo di autenticazione di rete progettato per permettere a client e server di provare la loro identità reciproca in modo sicuro su una rete non sicura. È la base di come funzionano i login in molti sistemi aziendali (come Windows Active Directory). L'idea fondamentale è: **non inviare mai la password attraverso la rete**. Invece, si usano dei "biglietti" (tickets) crittografati.
 
 ## L'architettura di Kerberos
@@ -8,7 +12,7 @@ Kerberos è un protocollo di autenticazione di rete progettato per permettere a 
 
 ## Il Funzionamento del Protocollo (V4)
 
-![[Screenshot 2025-12-09 at 09.42.48.png]]
+![[kerberos-il-funzionamento-del-protocollo-v4.png|Kerberos — Il Funzionamento del Protocollo (V4)]]
 
 - **Fase 1**: Autenticazione Iniziale: _Succede una volta sola quando accendi il computer_
 	- **Passaggio 1:** L'utente si siede alla workstation e inserisce il nome utente. La workstation invia una richiesta all'**Authentication Server (AS)** dicendo: "Ciao, sono l'Utente X e vorrei accedere".
@@ -38,7 +42,7 @@ Kerberos è un protocollo di autenticazione di rete progettato per permettere a 
 
 ### Flusso dei messaggi
 
-![[Screenshot 2025-12-09 at 10.01.44.png]]
+![[kerberos-flusso-dei-messaggi.png|Kerberos — Flusso dei messaggi]]
 
 #### (a) Fase di Autenticazione (Ottenere il TGT)
 
@@ -49,7 +53,7 @@ Qui è dove si fa il login.
     - **Cosa c'è dentro il pacchetto?** Una nuova **chiave di sessione** ($K_{c,tgs}$) da usare per parlare col TGS dopo, e il **Ticket TGT** ($Ticket_{tgs}$).
 
 > [!Note] Cifratura del ticket _tgs_
->  Il $Ticket_{tgs}$ è cifrato con la chiave del TGS ($K_{tgs}$). Il Client non può leggerlo, lo conserva e basta. L'AS dà una "chiave per il prossimo passaggio" e una "busta chiusa" (il Ticket) che solo il TGS può aprire.
+> Il $Ticket_{tgs}$ è cifrato con la chiave del TGS ($K_{tgs}$). Il Client non può leggerlo, lo conserva e basta. L'AS dà una "chiave per il prossimo passaggio" e una "busta chiusa" (il Ticket) che solo il TGS può aprire.
 
 #### (b) Fase TGS (Ottenere il Ticket per il Servizio)
 
@@ -98,17 +102,17 @@ Osserviamo che ci sono chiavi dentro chiavi:
 2. Usiamo la **Chiave TGS** per sbloccare la **Chiave Servizio** ($K_{c,v}$).
 3. Usiamo la **Chiave Servizio** per parlare col Server finale.
 
-![[Screenshot 2026-02-08 at 11.43.44.png]]
+![[kerberos-riassunto-della-matrioska.png|Kerberos — Riassunto della "Matrioska"]]
 
 ### Kerberos v4 con multirealm
 
 In presenza di più realm Kerberos (scenario multi-realm) può sorgere una problematica specifica. Questa si manifesta quando un utente deve accedere a un server che appartiene a un realm differente dal proprio. Per gestire tale situazione, lo scenario viene realizzato estendendo i meccanismi già descritti, introducendo ulteriori interazioni tra i diversi realm, come illustrato di seguito.
 
-![[Screenshot 2026-02-08 at 11.50.17.png]]
+![[kerberos-kerberos-v4-con-multirealm.png|Kerberos — Kerberos v4 con multirealm]]
 
 La differenza principale risiede nell’interazione (4), nella quale la chiave effimera utilizzata non è la **K<sub>c,v</sub>**, condivisa tra il client e il server remoto, bensì una nuova chiave effimera **K<sub>c,tgs</sub>**, condivisa tra il client e il Ticket Granting Server presente nel dominio di destinazione del server.
 
-![[Screenshot 2026-02-08 at 11.56.42.png]]
+![[kerberos-kerberos-v4-con-multirealm-2.png|Kerberos — Kerberos v4 con multirealm (2)]]
 
 ## Struttura del protocollo V5
 
@@ -138,7 +142,7 @@ La differenza principale risiede nell’interazione (4), nella quale la chiave e
 
 ### Flusso dei messaggi
 
-![[Screenshot 2025-12-09 at 10.52.50.png]]
+![[kerberos-flusso-dei-messaggi-2.png|Kerberos — Flusso dei messaggi (2)]]
 
 #### Fase (a): Autenticazione Iniziale (AS Exchange)
 

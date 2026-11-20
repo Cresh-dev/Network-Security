@@ -1,3 +1,7 @@
+---
+title: Virtual Private Networks (VPNs)
+description: Le VPN sono tecnologie che operano al livello 2 (Data Link/Ethernet) o al livello 3 (Network/IP) del modello OSI per creare canali sicuri attraverso reti…
+---
 ==Le VPN sono tecnologie che operano al livello 2 (Data Link/Ethernet) o al livello 3 (Network/IP) del modello OSI per creare canali sicuri attraverso reti pubbliche come Internet==. L'obiettivo principale è il **Tunneling**: questa tecnica consente ai mittenti di incapsulare i propri dati in pacchetti IP che nascondono l'infrastruttura di routing e switching sottostante, garantendo la sicurezza dei dati contro accessi indesiderati. Possiamo avere due scenari principali:
 - **LAN-to-LAN:** Viene creato un tunnel tra due router di bordo (chiamati _concentrator_). Questo collega, ad esempio, sedi distaccate di un'azienda.
 - **Host-to-LAN:** Viene creato un collegamento sicuro tra un singolo host (definito _roadwarrior_) e il router di bordo della LAN. Questo scenario è tipico per il lavoro remoto o mobile.

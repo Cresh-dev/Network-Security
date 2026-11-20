@@ -1,3 +1,7 @@
+---
+title: Oauth 2.0
+description: "Introduciamo OAuth 2.0 partendo da un problema di sicurezza nel modello client-server tradizionale: per permettere a un'applicazione di terze parti di accedere…"
+---
 Introduciamo OAuth 2.0 partendo da un problema di sicurezza nel modello client-server tradizionale: per permettere a un'applicazione di terze parti di accedere a risorse protette, l'utente (resource owner) doveva condividere le proprie credenziali (username e password) con l'applicazione terza. Questo è definito come una metodologia insicura. OAuth 2.0 (standardizzato nella **RFC 6749**) risolve questo problema introducendo un livello di autorizzazione che **separa il ruolo del client da quello del proprietario della risorsa**. In sintesi, permette alle applicazioni terze di agire per conto dell'utente senza che queste debbano conoscere l'identità dell'utente stesso o possedere le sue credenziali. 
 
 ## Architettura e Ruoli
@@ -18,7 +22,7 @@ Definiamo quattro attori principali nel framework OAuth 2.0:
 
 
 
-![[Screenshot 2026-02-09 at 09.23.54.png]]
+![[oauth-2-0-architettura-e-ruoli.png|Oauth 2.0 — Architettura e Ruoli]]
 
 ### Fase A e B: La Concessione (The Grant)
 

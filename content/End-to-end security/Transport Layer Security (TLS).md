@@ -1,17 +1,21 @@
+---
+title: Transport Layer Security (TLS)
+description: SSL e TLS sono dei protocolli crittografici che forniscono l'autenticazione e la crittografia dei dati tra server, macchine e applicazioni che operano su una…
+---
 SSL e TLS sono dei protocolli [[Cryptosystem|crittografici]] che forniscono l'autenticazione e la crittografia dei dati tra server, macchine e applicazioni che operano su una rete. SSL è il predecessore di TLS che è subentrato nel 1999. Questo protocollo è composto da 2 livelli:
 - **TLS Handshake Protocol**: Negozia gli algoritmi e le modalità di protezione dei dati permettendoci di ottenere un canale sicuro per la comunicazione.
 - **TLS Record Protocol**: Protegge i dati dopo e mette in pratica gli algoritmi negoziati nell'handshake.
 
-![[Screenshot 2025-11-11 at 14.27.19.png]]
+![[transport-layer-security-tls.png|Transport Layer Security (TLS)]]
 
 > [!Differenza tra sessione e connessione]
 > La sessione è il **contesto di sicurezza** duraturo. Contiene le chiavi crittografiche e i parametri. Una singola Sessione viene stabilita una sola volta, per **evitare la rinegoziazione costosa** della sicurezza. La connessione è il **canale di comunicazione** temporaneo. Ogni nuova connessione **riutilizza lo stato di sicurezza** della Sessione esistente, rendendo i trasferimenti di dati successivi estremamente più veloci.
 
-![[Screenshot 2025-11-11 at 14.14.36.png]]
+![[transport-layer-security-tls-2.png|Transport Layer Security (TLS) (2)]]
 
 ## TLS 1.2 Handshake protocol
 
-![[Screenshot 2026-02-06 at 17.27.55.png]]
+![[transport-layer-security-tls-tls-1-2-handshake-protocol.png|Transport Layer Security (TLS) — TLS 1.2 Handshake protocol]]
 
 - **Scambio dei Messaggi "Hello" e Accordo sugli Algoritmi:**
     - **Cliente e Server si salutano** ("Client Hello" e "Server Hello").
@@ -60,13 +64,13 @@ Il processo di generazione delle chiavi in TLS avviene in tre fasi sequenziali:
 
 Lo schema **P_hash** visibile nell'immagine rappresenta proprio il funzionamento iterativo della PRF, che utilizza l'algoritmo HMAC per produrre un flusso di dati della lunghezza necessaria a coprire tutte queste chiavi.
 
-![[Screenshot 2026-02-06 at 17.54.34.png]]
+![[transport-layer-security-tls-generazioni-delle-chiavi.png|Transport Layer Security (TLS) — Generazioni delle chiavi]]
 
 ## TLS record protocol
 
 ==Il TLS Record Protocol è uno dei componenti fondamentali del protocollo TLS (Transport Layer Security). Si occupa di incapsulare, proteggere e trasportare i dati applicativi in modo sicuro tra client e server.==
 
-![[Screenshot 2026-02-06 at 18.03.03.png]]
+![[transport-layer-security-tls-tls-record-protocol.png|Transport Layer Security (TLS) — TLS record protocol]]
 
 ### Operazioni del record protocol 
 

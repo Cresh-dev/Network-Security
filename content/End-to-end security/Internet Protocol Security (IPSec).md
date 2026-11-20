@@ -1,3 +1,7 @@
+---
+title: Internet Protocol Security (IPSec)
+description: IPsec (Internet Protocol Security) è un insieme di protocolli che serve a proteggere le comunicazioni IP (IPv4 e IPv6).
+---
 ==IPsec (Internet Protocol Security) è un insieme di protocolli che serve a proteggere le comunicazioni IP (IPv4 e IPv6)==. È usato soprattutto per creare **VPN sicure**, ma può proteggere qualunque traffico IP. IPsec lavora a **livello 3 (Rete)** del modello OSI, quindi può proteggere tutto ciò che viaggia sopra (TCP, UDP, applicazioni, ecc. IPsec garantisce quattro cose fondamentali:
 
 1. **Confidenzialità** → cifra i dati (nessuno può leggerli).
@@ -7,7 +11,7 @@
 
 Prima di introdurre modalità e protocolli dobbiamo parlare della **Security Association (SA)** la quale è una _connessione logica monodirezionale_ tra un mittente e un destinatario, utilizzata in IPsec per applicare servizi di sicurezza al traffico di rete (es. autenticazione, cifratura). 
 
-![[Screenshot 2026-02-07 at 09.41.40.png]]
+![[internet-protocol-security-ipsec.png|Internet Protocol Security (IPSec)]]
 
 IPsec ha due protocolli principali:
 
@@ -76,7 +80,7 @@ Versioni:
 
 Questo protocollo garantisce l'integrità dei dati tramite il **campo ICV** (Integrity check value) che è l'impronta crittografica del pacchetto. Questo campo garantisce che il pacchetto non sia stato manomesso e utilizza una [[Cryptosystem|crittografia]] a chiave simmetrica che viene calcolata su campi non modificabili. 
 
-![[Screenshot 2026-02-07 at 10.01.30.png]]
+![[internet-protocol-security-ipsec-ah.png|Internet Protocol Security (IPSec) — AH]]
 
 > [!NOTE] Come AH garantisce l'Integrità (L'impronta digitale)
 > - **Il calcolo del MAC:** Prima di inviare il pacchetto, il mittente prende quasi tutto il pacchetto (Header IP + Header AH + Payload) e lo passa attraverso un algoritmo di hashing (come SHA-256) insieme a una **chiave segreta** condivisa.
@@ -90,7 +94,7 @@ Immaginiamo una finestra numerata, ad esempio di **64 slot** (valore tipico ma c
 - **se è già stato ricevuto** → RIFIUTATO (probabile replay) 
 - **se non è stato ricevuto** → ACCETTATO e il relativo bit nella finestra viene segnato come _ricevuto_
 
-![[Screenshot 2026-02-07 at 10.03.41.png]]
+![[internet-protocol-security-ipsec-come-funziona-la-sliding-window.png|Internet Protocol Security (IPSec) — Come funziona la sliding window]]
 
 > [!NOTE] Resistenza all'attacco di replay
 > Ogni pacchetto inviato riceve un numero progressivo (1, 2, 3...). Il destinatario tiene traccia dei numeri già ricevuti tramite una "finestra scorrevole" nel **SAD**. Se l'attaccante rimanda il pacchetto n. 1 quando il destinatario è già arrivato al n. 50, il pacchetto viene **scartato immediatamente** perché considerato un duplicato (replay).
@@ -110,7 +114,7 @@ Fornisce **confidenzialità**, **integrità**, **autenticazione opzionale** e **
 - **Autenticazione**: Verifica il mittente, spesso tramite un MAC (Message Authentication Code).
 - **Protezione antireplay**: Come AH, usa numeri di sequenza.
 
-![[Screenshot 2026-02-07 at 10.13.41.png]]
+![[internet-protocol-security-ipsec-funzioni-principali.png|Internet Protocol Security (IPSec) — Funzioni principali]]
 
 > [!NOTE] Come ESP garantisce la Riservatezza
 > - **Cifratura:** Il payload originale (ad esempio un segmento TCP contenente una mail) viene preso e trasformato in un ammasso di dati illeggibili usando un algoritmo di cifratura simmetrica (come **AES**) e una chiave segreta.
@@ -145,7 +149,7 @@ IKE è un **protocollo a due fasi**. Il suo obiettivo finale non è trasportare 
     3. Si autenticano (tramite Pre-Shared Key o Certificati Digitali).
 - **Risultato:** Viene creata una **IKE SA** (Security Association). È un tunnel bidirezionale usato _solo_ per negoziare la fase successiva.
 
-![[Screenshot 2026-02-07 at 10.47.01.png]]
+![[internet-protocol-security-ipsec-le-fasi-del-protocollo-ike.png|Internet Protocol Security (IPSec) — Le fasi del protocollo IKE]]
 
 **Fase 1 con modalità aggressiva**: nel caso in cui due peer si conoscano già, è possibile semplificare la procedura scambiando solo 3 messaggi invece dei precedenti sei. Tuttavia, vi è anche una negoziazione limitata degli algoritmi crittografici e il rischio di un man in the middle.
 
@@ -156,7 +160,7 @@ IKE è un **protocollo a due fasi**. Il suo obiettivo finale non è trasportare 
 - **Risultato:** Vengono create le **IPsec SA**.
     - A differenza della Fase 1, queste sono **unidirezionali**. Ne serve una per l'andata e una per il ritorno.
 
-![[Screenshot 2026-02-07 at 10.50.28.png]]
+![[internet-protocol-security-ipsec-le-fasi-del-protocollo-ike-2.png|Internet Protocol Security (IPSec) — Le fasi del protocollo IKE (2)]]
 
 ## NAT e IPSec
 

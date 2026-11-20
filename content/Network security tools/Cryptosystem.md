@@ -1,6 +1,10 @@
+---
+title: Cryptosystem
+description: Il crypto-system è un sistema di cifratura che utilizza degli algoritmi matematici e chiavi per proteggere dati, rendendoli illeggibili a chi non è autorizzato.
+---
 ==Il crypto-system è un sistema di cifratura che utilizza degli algoritmi matematici e chiavi per proteggere dati, rendendoli illeggibili a chi non è autorizzato==. Partiamo con il definire il seguente schema base per capire come è strutturato questo sistema:
 
-![[Screenshot 2025-10-16 at 17.57.38.png]]
+![[cryptosystem.png|Cryptosystem]]
 
 > [!Funzionamento dei Cryptosystem]
 > Possiamo osservare dallo schema che abbiamo un messaggio ($m$) che vogliamo trasferire ad un altra persona, per far sì che il nostro messaggio non venga letto da nessun'altro utilizziamo una chiave ($k_1$) per cifrare tramite un algoritmo il messaggio ($c=E_{k1}(m)$) e successivamente lo trasmettiamo sul canale. Una volta arrivato a destinazione, il destinatario non può leggere il messaggio (perché è cifrato) finché non utilizza una chiave ($k_2$) che permette di decifrarlo tramite un algoritmo ($m=D_{k2}(c)$).
@@ -18,12 +22,12 @@ Un obiettivo al quale vogliamo aspirare è ottenere la segretezza perfetta che n
 
 ==Secondo il teorema di Shannon la segretezza perfetta può essere ottenuta assicurandosi che il messaggio in chiaro (m) e il messaggio cifrato (c) siano completamente non correlati. Un algoritmo che assicura questa perfetta segretezza è chiamato OTP (one time pad)==, ed è implementato dal seguente schema:
 
-![[Screenshot 2025-10-16 at 18.13.17.png]]
+![[cryptosystem-perfect-secrecy.png|Cryptosystem — Perfect secrecy]]
 
 > [!Funzionamento dello schema OTP]
 > Purtroppo questo algoritmo non può essere implementato, perché:
 > - Non è possibile generare numeri realmente casuali;
-> - Non avendo un canale sicuro la chiave in quale modo può essere comunicata alla destinazione ?
+> - Non avendo un canale sicuro la chiave in quale modo può essere comunicata alla destinazione?
 
 ### Sicurezza pratica
 
@@ -92,7 +96,7 @@ Le due chiavi possono essere usate in maniera complementare per la cifratura e l
 
 Con un mix di queste tecniche possiamo offrire **l'integrità dei dati**.
 
-![[Screenshot 2026-02-05 at 17.53.52.png]]
+![[cryptosystem-usi-e-applicazioni.png|Cryptosystem — Usi e Applicazioni]]
 
 ### Diffie-Hellman
 
@@ -117,9 +121,9 @@ L'obiettivo è: Permettere a due persone (Alice e Bob) di creare una **chiave se
 Entrambi ottengono **la stessa chiave `K`**, che ora possono usare per cifrare i messaggi!
 
 > [!Attenzione allo scambio di chiavi]
-> Lo scambio non autenticato di chiavi può portare ad un attacco main-in-the-middle. Un sistema a chiave pubblica (asimmetrica) di distribuzione delle chiavi consente a due utenti di scambiarsi una chiave su un canale non sicuro. Nel nostro esempio le due entità non hanno nessuna garanzia sull'identità reciproca, quindi non si deve usare un DH anonimo ma bisogna usare i **certificati** !
+> Lo scambio non autenticato di chiavi può portare ad un attacco main-in-the-middle. Un sistema a chiave pubblica (asimmetrica) di distribuzione delle chiavi consente a due utenti di scambiarsi una chiave su un canale non sicuro. Nel nostro esempio le due entità non hanno nessuna garanzia sull'identità reciproca, quindi non si deve usare un DH anonimo ma bisogna usare i **certificati**!
 
-![[Screenshot 2026-02-05 at 17.59.21.png]]
+![[cryptosystem-diffie-hellman.png|Cryptosystem — Diffie-Hellman]]
 
 ### RSA
 

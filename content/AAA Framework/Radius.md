@@ -1,3 +1,7 @@
+---
+title: Radius
+description: il protocollo RADIUS (Remote Authentication Dial-In User Service) emerge come lo standard de facto per l'autenticazione remota e l'implementazione del…
+---
 il protocollo **RADIUS** (Remote Authentication Dial-In User Service) emerge come lo standard _de facto_ per l'autenticazione remota e l'implementazione del framework **AAA** (Authentication, Authorization, Accounting). 
 
 ## Architettura e Ruolo nel Framework AAA
@@ -7,7 +11,7 @@ RADIUS utilizza **UDP** come protocollo di trasporto. Questa scelta è dettata d
 - **Client RADIUS:** Non è l'utente finale, bensì il **NAS** (Network Access Server), ovvero il dispositivo che funge da punto di accesso alla rete (es. un access point o un server [[Virtual Private Networks (VPNs)|VPN]]).
 - **Server RADIUS:** È l'entità che gestisce il database delle credenziali e le policy di accesso.
 
-![[Screenshot 2026-02-07 at 16.57.15.png]]
+![[radius-architettura-e-ruolo-nel-framework-aaa.png|Radius — Architettura e Ruolo nel Framework AAA]]
 
 l protocollo supporta tutte e tre le funzioni del framework AAA:
 
@@ -22,7 +26,7 @@ l protocollo supporta tutte e tre le funzioni del framework AAA:
 
 **PAP (Password Authentication Protocol):** È un metodo di autenticazione debole. La password è vulnerabile a intercettazioni e replay attack se non protetta da un canale sicuro sottostante. Il NAS riceve le credenziali dell'utente, ma non possedendo il database degli utenti, non sa se le credenziali sono corrette. Impacchetta le credenziali in un messaggio tramite una funzione [[Hash function|hash]] MD5 chiamata Access-Request che invia al Server. Il server fornisce in risposta il messaggio di accettazione o rifiuto.
 
-![[Screenshot 2026-02-07 at 17.04.03.png]]
+![[radius-metodi-di-autenticazione-supportati.png|Radius — Metodi di Autenticazione Supportati]]
 
 **CHAP (Challenge Handshake Authentication Protocol):** Più sicuro del PAP, utilizza un meccanismo di _challenge-response_ a tre vie. La password non viene trasmessa; il client dimostra di conoscerla rispondendo a una sfida del server con un hash MD5. Tuttavia, richiede che il server conservi le password in chiaro (o in modo reversibile) per verificare la risposta. Abbiamo le seguenti fasi:
 
@@ -32,11 +36,11 @@ l protocollo supporta tutte e tre le funzioni del framework AAA:
 - **Risposta dell'Utente:** L'utente calcola e invia la **risposta** alla sfida ricevuta.
 - **Validazione Finale:** Il NAS crea un nuovo messaggio di Access-Request includendo la risposta dell'utente. Il server RADIUS verifica la validità della risposta e decide se **autorizzare o negare** l'accesso.
 
-![[Screenshot 2026-02-07 at 17.07.26.png]]
+![[radius-metodi-di-autenticazione-supportati-2.png|Radius — Metodi di Autenticazione Supportati (2)]]
 
 ## Pacchetto RADIUS
 
-![[Screenshot 2026-02-07 at 17.20.53.png]]
+![[radius-pacchetto-radius.png|Radius — Pacchetto RADIUS]]
 
 Il pacchetto ha un'intestazione (**header**) fissa di **20 byte**, seguita da un payload variabile. I campi principali sono:
 
@@ -70,7 +74,7 @@ Questo valore concatena tutti i dati del pacchetto con il segreto condiviso, ren
 
 ## RADIUS accounting procedure
 
-![[Screenshot 2026-02-07 at 17.41.55.png]]
+![[radius-radius-accounting-procedure.png|Radius — RADIUS accounting procedure]]
 
 ### Fase di Login (Authentication & Authorization)
 
@@ -86,7 +90,7 @@ Questo valore concatena tutti i dati del pacchetto con il segreto condiviso, ren
 
 Un tema rilevante trattato è l'uso di RADIUS in scenari distribuiti complessi tramite il meccanismo di **Proxy**. Invece di avere ogni rete locale che autentica direttamente gli utenti, si utilizza un **server remoto centrale** (Home Network) che detiene le credenziali reali. Questo permette a un utente (nell'esempio "Alice") di accedere a una rete esterna ("Foreign Network") usando le proprie credenziali di casa.
 
-![[Screenshot 2026-02-07 at 17.43.21.png]]
+![[radius-scalabilita-e-roaming-proxy-radius.png|Radius — Scalabilità e Roaming (Proxy RADIUS)]]
 
 1. Alice invia le credenziali al **NAS**.
 2. Il NAS invia un pacchetto **Access-Request** al Proxy RADIUS locale.

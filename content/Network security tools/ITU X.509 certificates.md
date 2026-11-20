@@ -1,13 +1,17 @@
+---
+title: ITU X.509 certificates
+description: I certificati X.509 sono lo strumento centrale che la PKI (public-key-certificates) utilizza per fornire un metodo sicuro, affidabile e scalabile per la…
+---
 ==I certificati X.509 sono lo strumento centrale che la PKI (public-key-certificates) utilizza per fornire un metodo sicuro, affidabile e scalabile per la distribuzione delle chiavi pubbliche, garantendo segretezza, correttezza e verifica del mittente==. Il certificato X.509 ha il ruolo cruciale di "legare" (bind) il proprietario alla chiave pubblica. Al centro dello schema X.509 si trova il certificato a chiave pubblica associato a ciascun utente, che si assume sia creato da una **Certification Authority (CA)** fidata. Un certificato lega l'identità alla chiave pubblica, includendo anche altre informazioni come il periodo di validità e i diritti di utilizzo. La sicurezza del certificato è garantita dal fatto che esso è autenticato tramite una **crittografia asimmetrica** (ad esempio RSA) del suo hash.
 
-![[ns01 baseline security tools 2.png]]
+![[ns01 baseline security tools 2.png|ITU X.509 certificates]]
 
 > [!NOTE] Resistenza all'attacco Man-in-the-Middle
->  Qualora si trasmettesse unicamente una stringa di testo dichiarando che essa rappresenta la propria chiave pubblica, il destinatario non avrebbe alcun mezzo per verificare l’autenticità del mittente. Di conseguenza, non sarebbe possibile stabilire se la comunicazione provenga effettivamente dal soggetto legittimo oppure da un attaccante che tenta di intercettare e alterare le comunicazioni, come avviene in un attacco di tipo _Man-in-the-Middle_.
+> Qualora si trasmettesse unicamente una stringa di testo dichiarando che essa rappresenta la propria chiave pubblica, il destinatario non avrebbe alcun mezzo per verificare l’autenticità del mittente. Di conseguenza, non sarebbe possibile stabilire se la comunicazione provenga effettivamente dal soggetto legittimo oppure da un attaccante che tenta di intercettare e alterare le comunicazioni, come avviene in un attacco di tipo _Man-in-the-Middle_.
 
 ## Struttura del certificato 
 
-![[ns01 baseline security tools 1.png]]
+![[ns01 baseline security tools 1.png|ITU X.509 certificates — Struttura del certificato]]
 
 ## Come ottenere un certificato
 

@@ -1,3 +1,7 @@
+---
+title: Hash function
+description: Le Funzioni Hash (Hash Functions) sono uno strumento fondamentale nel modello di sicurezza di rete, essenziali nel contesto più ampio dell'Integrità dei Dati.
+---
 Le Funzioni Hash (Hash Functions) sono uno strumento fondamentale nel modello di sicurezza di rete, essenziali nel contesto più ampio dell'**Integrità dei Dati**. Una Funzione Hash è un meccanismo che genera un **digest** (riassunto) di una stringa di bit seguendo un algoritmo specifico. ==Non fa l'utilizzo di chiavi, infatti l'hash function singolarmente non è un secure tool==, ma essa è spesso utilizzata nei crypto mechanisms. Per trasformare un semplice controllo di integrità in uno strumento di sicurezza autenticato, l'hash deve essere protetto tramite crittografia simmetrica o asimmetrica.
 
 ## Usi comuni 
@@ -38,7 +42,7 @@ Per evitare questa tipologia di attacco possiamo adottare alcune contromisure ch
 
 La **struttura Merkle–Damgård** è un modo per **costruire una funzione di hash** sicura da una funzione di compressione di base (cioè una funzione che prende input di dimensione fissa e restituisce output di dimensione fissa).
 
-![[Screenshot 2026-02-05 at 18.34.02.png]]
+![[hash-function-merkle-damgard-structure.png|Hash function — Merkle–Damgård Structure]]
 
 > [!Idea di base]
 > Poiché i messaggi possono essere lunghi arbitrariamente, li dividiamo in **blocchi** di dimensione fissa e li elaboriamo uno alla volta, mantenendo uno stato intermedio (chiamato **chaining value**).

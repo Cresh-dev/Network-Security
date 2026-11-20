@@ -1,6 +1,10 @@
+---
+title: Digital signature
+description: La firma digitale è l'equivalente informatico della firma autografa su carta e ne ha lo stesso valore legale.
+---
 ==La firma digitale è l'equivalente informatico della firma autografa su carta e ne ha lo stesso valore legale. Serve per garantire l'autenticità, l'integrità e il non ripudio di un documento digitale==. Il suo funzionamento si basa sulla [[Cryptosystem#Crittografia a chiave pubblica (asimmetrica)|crittografia asimmetrica]] (o a chiave pubblica) e si articola in due fasi principali: la **firma** e la **verifica**. A differenza del [[Message authentication code (MAC) and HMAC|MAC]], la firma digitale utilizza la crittografia asimmetrica su un messaggio [[Hash function|hashato]]. Di seguito è riportato uno schema dove sono presenti le viarie fasi che verranno approfondite successivamente.
 
-![[Screenshot 2025-11-07 at 18.05.16.png]]
+![[digital-signature.png|Digital signature]]
 
 ## Fasi della firma digitale
 
