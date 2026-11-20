@@ -37,12 +37,13 @@ jobs:
         with:
           path: .quartz/plugins
           key: ${{ runner.os }}-plugins-${{ hashFiles('quartz.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-plugins-
       - name: Install Dependencies
         run: npm ci
       - name: Install Quartz plugins
-        run: npx quartz plugin install
+        run: |
+          # Il tema comune si reinstalla sempre dal lockfile: niente versioni vecchie dalla cache
+          rm -rf .quartz/plugins/site-header .quartz/plugins/course-meta .quartz/plugins/footer
+          npx quartz plugin install
       - name: Build Quartz
         run: npx quartz build
       - name: Redirect dei vecchi URL (redirects.txt)
