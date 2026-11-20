@@ -1,3 +1,4 @@
+# GENERATO da Sites/tools/sync.mjs (fonte: tools/deploy.yml): non modificare a mano.
 name: Deploy Quartz site to GitHub Pages
  
 on:
@@ -44,6 +45,15 @@ jobs:
         run: npx quartz plugin install
       - name: Build Quartz
         run: npx quartz build
+      - name: Redirect dei vecchi URL (redirects.txt)
+        run: |
+          if [ -f redirects.txt ]; then
+            while read -r from to; do
+              case "$from" in ''|'#'*) continue ;; esac
+              mkdir -p "public/$(dirname "$from")"
+              printf '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><title>Pagina spostata</title><link rel="canonical" href="%s"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=%s"></head></html>\n' "$to" "$to" > "public/$from.html"
+            done < redirects.txt
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

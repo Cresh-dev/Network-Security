@@ -1,0 +1,3 @@
+# Vecchi URL di Quartz 4 che Quartz 5 non reindirizza da solo (note con lo stesso nome della cartella).
+# Formato: <vecchio percorso senza .html> <nuovo URL>. Usato dal workflow di deploy.
+Network-security-tools/Network-security-tools /Network-Security/network-security-tools/
