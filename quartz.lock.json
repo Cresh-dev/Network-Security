@@ -80,9 +80,9 @@
         "name": "course-meta"
       },
       "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
-      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "commit": "3bd697c9aea5746316e3511a6cc46706d26bdb5c",
       "subdir": "course-meta",
-      "installedAt": "2026-11-20T18:44:11.314Z"
+      "installedAt": "2026-11-20T18:50:35.264Z"
     },
     "crawl-links": {
       "source": "github:quartz-community/crawl-links",
@@ -151,9 +151,9 @@
         "name": "footer"
       },
       "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
-      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "commit": "3bd697c9aea5746316e3511a6cc46706d26bdb5c",
       "subdir": "footer",
-      "installedAt": "2026-11-20T18:44:11.347Z"
+      "installedAt": "2026-11-20T18:50:35.363Z"
     },
     "github-flavored-markdown": {
       "source": "github:quartz-community/github-flavored-markdown",
@@ -246,9 +246,9 @@
         "name": "site-header"
       },
       "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
-      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "commit": "3bd697c9aea5746316e3511a6cc46706d26bdb5c",
       "subdir": "site-header",
-      "installedAt": "2026-11-20T18:44:11.337Z"
+      "installedAt": "2026-11-20T18:50:35.353Z"
     },
     "spacer": {
       "source": "github:quartz-community/spacer",
