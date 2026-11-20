@@ -73,6 +73,17 @@
       "commit": "d22fae357ae74a3e97a2f450862f23f5227842c4",
       "installedAt": "2026-07-16T17:51:02.875Z"
     },
+    "course-meta": {
+      "source": {
+        "repo": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+        "subdir": "course-meta",
+        "name": "course-meta"
+      },
+      "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "subdir": "course-meta",
+      "installedAt": "2026-11-20T18:44:11.314Z"
+    },
     "crawl-links": {
       "source": "github:quartz-community/crawl-links",
       "resolved": "https://github.com/quartz-community/crawl-links.git",
@@ -134,10 +145,15 @@
       "installedAt": "2026-07-16T17:51:01.063Z"
     },
     "footer": {
-      "source": "github:quartz-community/footer",
-      "resolved": "https://github.com/quartz-community/footer.git",
-      "commit": "6ed61928d3c0178d7cef972ebcbca6a206a2f065",
-      "installedAt": "2026-07-16T17:51:04.703Z"
+      "source": {
+        "repo": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+        "subdir": "footer",
+        "name": "footer"
+      },
+      "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "subdir": "footer",
+      "installedAt": "2026-11-20T18:44:11.347Z"
     },
     "github-flavored-markdown": {
       "source": "github:quartz-community/github-flavored-markdown",
@@ -222,6 +238,17 @@
       "resolved": "https://github.com/quartz-community/search.git",
       "commit": "0f4c1a233cd03a0f562e13636b89b7708f8e2698",
       "installedAt": "2026-07-16T17:51:03.665Z"
+    },
+    "site-header": {
+      "source": {
+        "repo": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+        "subdir": "site-header",
+        "name": "site-header"
+      },
+      "resolved": "https://github.com/Cresh-dev/quartz-cresh-theme.git",
+      "commit": "228275a13f96b5150571c2c7db2b9e87dc2a0432",
+      "subdir": "site-header",
+      "installedAt": "2026-11-20T18:44:11.337Z"
     },
     "spacer": {
       "source": "github:quartz-community/spacer",

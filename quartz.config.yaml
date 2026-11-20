@@ -250,21 +250,30 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
-  - source: ../quartz-cresh-theme/site-header
+  - source:
+      repo: https://github.com/Cresh-dev/quartz-cresh-theme.git
+      subdir: site-header
+      name: site-header
     enabled: true
     options:
       repo: Network-Security
     layout:
       position: beforeBody
       priority: 1
-  - source: ../quartz-cresh-theme/course-meta
+  - source:
+      repo: https://github.com/Cresh-dev/quartz-cresh-theme.git
+      subdir: course-meta
+      name: course-meta
     enabled: true
     options:
       professore: Prof. Giuseppe Piro
     layout:
       position: beforeBody
       priority: 11
-  - source: ../quartz-cresh-theme/footer
+  - source:
+      repo: https://github.com/Cresh-dev/quartz-cresh-theme.git
+      subdir: footer
+      name: footer
     enabled: true
     options:
       repo: Network-Security
