@@ -1,28 +1,15 @@
-# Sicurezza di Rete (Appunti)
+# 🛡️ Secure Programming Laboratory
 
-Questa repository contiene i file sorgente dei miei appunti universitari riguardanti le architetture e i protocolli per la protezione delle infrastrutture ICT.
+Questo repository raccoglie gli appunti e il materiale didattico relativi al corso di **Secure Programming Laboratory**. 
 
-🌐 **Leggi gli appunti formattati qui:** 👉 [https://Cresh-dev.github.io/Network-Security/](https://Cresh-dev.github.io/Network-Security/)
+L'obiettivo del corso (e di queste note) è comprendere l'asimmetria tra attacco e difesa, imparare a identificare le vulnerabilità del software e applicare le migliori pratiche per progettare, sviluppare e distribuire sistemi intrinsecamente sicuri.
 
-## Contenuti
+---
 
-### 🔐 Infrastruttura a Chiave Pubblica (PKI)
+## 📝 Contenuto in Sintesi
 
-- **Concetti Base:** Gestione del ciclo di vita dei certificati digitali tramite hardware, software e procedure dedicate.
-- **Componenti:** Ruoli della **Certificate Authority (CA)** come ente fidato, della **Registration Authority (RA)** per la verifica delle identità e del **Repository** per la memorizzazione di certificati e CRL.
-- **Standard X.509:** Utilizzo dei certificati per garantire l'autenticazione tramite crittografia a chiave pubblica.
-- **Policy:** Differenza tra **Certificate Policy (CP)** e **Certificate Practice Statement (CPS)** per le linee guida operative.
+Gli appunti sono strutturati in tre macro-aree tematiche:
 
-### 🛡️ Sicurezza Perimetrale
-
-- **Firewalling:** Sistemi di protezione per il controllo degli accessi tra reti con diversi livelli di fiducia.
-- **Architetture DMZ:** Configurazione di zone demilitarizzate per esporre servizi pubblici (Web, Mail) in sicurezza.
-- **Modelli Implementativi:** Analisi delle soluzioni **Three-Legged Firewall** (economica) e **Two Single-Homed Firewalls** (massima sicurezza tramite isolamento fisico).
-- **Tipologie di Filtro:** Analisi dei filtri a livello Network (Packet Filtering), Transport (Stateful Inspection) e Application (Gateway).
-
-### 🤝 Framework AAA e Sicurezza E2E
-
-- **Modello AAA:** Implementazione di **Authentication**, **Authorization** e **Accounting** per il controllo granulare degli accessi.
-- **Protocolli di Sicurezza:** Approfondimento su standard come Radius, Kerberos, TLS e IPsec.
-- **Canali Sicuri:** Tecniche per garantire riservatezza e integrità dei dati end-to-end.
-- **Gestione delle Chiavi:** Gerarchia e distribuzione delle chiavi di sessione e chiavi master.
+*   **Software & Web Security:** Analisi approfondita delle vulnerabilità OWASP più comuni (SQLi, XSS, XXE, CSRF), gestione sicura delle sessioni (Auth/Access Control) e sicurezza in ambiente Mobile (Android e iOS).
+*   **DevSecOps & Cloud:** Integrazione della sicurezza nel ciclo di vita del software, gestione sicura del codice tramite Git/GitHub e protezione delle infrastrutture Cloud.
+*   **IoT & Robotica (ROS 2):** Studio delle problematiche di sicurezza nei dispositivi embedded/IoT e implementazione di comunicazioni sicure tramite DDS in ambito robotico.
